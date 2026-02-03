@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shreyash Sawalgi | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+         :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --accent: #38bdf8;
+        }
+        
+        body.light {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --accent: #2563eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.3s ease;
+        }
+        
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+        }
+        
+        .typing {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-top: 10px;
+            height: 30px;
+        }
+        
+        .btn {
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            background: var(--card);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        section {
+            padding: 80px 10%;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: var(--accent);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: var(--card);
+        }
+        
+        @media(max-width:600px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toggle" onclick="toggleTheme()">🌗 Toggle</div>
+
+    <header>
+        <h1>Hi, I'm <span style="color:var(--accent)">Shreyash Sawalgi</span></h1>
+        <div class="typing" id="typing"></div>
+        <button class="btn" onclick="scrollToSection()">Explore My Work</button>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+                I’m an <b>awesome, cool, and intelligent programmer & developer</b> 😎. Passionate about building real-world projects, experimenting with technology, and turning ideas into impactful digital solutions.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="grid">
+            <div class="card">💻 Web Development</div>
+            <div class="card">☕ Java & Backend Logic</div>
+            <div class="card">🤖 AI / ML Basics</div>
+            <div class="card">📡 IoT Projects</div>
+            <div class="card">🧠 Problem Solving</div>
+            <div class="card">🚀 Project Building</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🌱 Intelligent Pesticide Sprinkler</h3>
+                <p>AI-based system that detects plant condition and sprays pesticide only when required.</p>
+            </div>
+            <div class="card">
+                <h3>🔥 Fire Detection System</h3>
+                <p>Real-time fire detection and alert system using Java and sensors.</p>
+            </div>
+            <div class="card">
+                <h3>🌐 Student Portals</h3>
+                <p>Multiple full-stack portals with authentication, admin approval, and dashboards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <div class="card" style="text-align:center">
+            <p>📧 Email: <b>your-email@example.com</b></p>
+            <p>🌍 GitHub | LinkedIn | Portfolio</p>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 | Designed & Built by <b>Shreyash Sawalgi</b> 🚀
+    </footer>
+
+    <script>
+        const texts = [
+            "Programmer 💻",
+            "Developer 🚀",
+            "Problem Solver 🧠",
+            "Tech Enthusiast ⚡"
+        ];
+
+        let index = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById("typing");
+
+        function typeEffect() {
+            if (charIndex < texts[index].length) {
+                typingElement.textContent += texts[index].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 100);
+            } else {
+                setTimeout(eraseEffect, 1500);
+            }
+        }
+
+        function eraseEffect() {
+            if (charIndex > 0) {
+                typingElement.textContent = texts[index].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseEffect, 50);
+            } else {
+                index = (index + 1) % texts.length;
+                setTimeout(typeEffect, 300);
+            }
+        }
+
+        typeEffect();
+
+        function toggleTheme() {
+            document.body.classList.toggle("light");
+        }
+
+        function scrollToSection() {
+            document.getElementById("about").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+</body>
+
+</html>
